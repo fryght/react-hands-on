@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import SearchBar from './components/SearchBar';
 import HallOfShame from './components/HallOfShame';
 import './App.css';
 import employees from './data/employees';
@@ -23,7 +22,6 @@ class App extends Component {
 
     return (
       <div className="App">
-        <SearchBar updateValue={this.handleChange}/>
         <HallOfShame employees={NoCreditEmployees}/>
       </div>
     );
