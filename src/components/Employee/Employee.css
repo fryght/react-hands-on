@@ -17,6 +17,14 @@
     height: 100%;
 }
 
+.credit.positive {
+    color: green;
+}
+
+.credit.negative {
+    color: red;
+}
+
 .Employee-List {
     display: flex;
     flex-wrap: wrap;
