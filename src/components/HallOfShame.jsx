@@ -1,6 +1,9 @@
 import React, { PureComponent } from 'react';
+import { connect } from 'react-redux'
+
 import Employee from './Employee/Employee';
 import './Employee/Employee.css';
+import {getNoCreditEmployees} from '../reducers/employeesReducer';
 
 class HallOfShame extends PureComponent {
     render() {
@@ -24,4 +27,11 @@ class HallOfShame extends PureComponent {
     }
 }
 
-export default HallOfShame;
+
+const mapStateToProps = (state) => {
+    return {
+        employees: getNoCreditEmployees(state.employees),
+    }
+}
+
+export default connect(mapStateToProps)(HallOfShame);

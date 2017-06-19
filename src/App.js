@@ -1,8 +1,20 @@
 import React, { Component } from 'react';
+import { Provider } from 'react-redux'
 
+import { ConnectedRouter } from 'react-router-redux';
+import {
+  Route,
+  Link
+} from 'react-router-dom';
+
+import createHistory from 'history/createBrowserHistory'
+import store from './createStore';
+import EmployeeOverview from './components/Employee/EmployeeOverview';
 import HallOfShame from './components/HallOfShame';
 import './App.css';
-import employees from './data/employees';
+
+// Create a history of your choosing (we're using a browser history in this case)
+const history = createHistory();
 
 class App extends Component {
   constructor(props) {
@@ -16,14 +28,20 @@ class App extends Component {
   }
 
   render() {
-    const filterByName = query => employees.filter(employee => employee.name.toLowerCase().indexOf(query.toLowerCase()) > -1);
-    const filterByTitle = query => employees.filter(employee => employee.title.toLowerCase().indexOf(query.toLowerCase()) > -1);
-    const NoCreditEmployees = employees.filter(employee => employee.credit < 0).sort((a,b) => a.credit - b.credit);
-
     return (
-      <div className="App">
-        <HallOfShame employees={NoCreditEmployees}/>
-      </div>
+      <Provider store={store}>
+        <ConnectedRouter history={history}>
+          <div className="App">
+            <ul>
+              <li><Link to="/">Home</Link></li>
+              <li><Link to="/employees">Employees</Link></li>
+              <li><Link to="/hall-of-shame">Hall of Shame</Link></li>
+            </ul>
+            <Route path="/employees" component={EmployeeOverview}/>
+            <Route path="/hall-of-shame" component={HallOfShame}/>
+          </div>
+        </ConnectedRouter>
+      </Provider>
     );
   }
 }

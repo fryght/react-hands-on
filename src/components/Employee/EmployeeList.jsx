@@ -1,4 +1,7 @@
 import React, { PureComponent } from 'react';
+import {connect} from 'react-redux';
+
+import {filterByName} from '../../reducers/employeesReducer';
 import Employee from './Employee';
 import './Employee.css';
 
@@ -21,4 +24,10 @@ class EmployeeList extends PureComponent {
     }
 }
 
-export default EmployeeList;
+const mapStateToProps = (state) => {
+    return {
+        employees: filterByName(state.employees, state.searchFilter),
+    }
+}
+
+export default connect(mapStateToProps)(EmployeeList);
