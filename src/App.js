@@ -9,6 +9,7 @@ import {
 
 import createHistory from 'history/createBrowserHistory'
 import store from './createStore';
+import EmployeeDetails from './components/Employee/EmployeeDetails';
 import EmployeeOverview from './components/Employee/EmployeeOverview';
 import HallOfShame from './components/HallOfShame';
 import './App.css';
@@ -37,7 +38,8 @@ class App extends Component {
               <li><Link to="/employees">Employees</Link></li>
               <li><Link to="/hall-of-shame">Hall of Shame</Link></li>
             </ul>
-            <Route path="/employees" component={EmployeeOverview}/>
+            <Route path="/employees/:name" component={EmployeeDetails}/>
+            <Route exact path="/employees" component={EmployeeOverview}/>
             <Route path="/hall-of-shame" component={HallOfShame}/>
           </div>
         </ConnectedRouter>

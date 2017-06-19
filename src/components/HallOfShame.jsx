@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux'
 
+import Credit from './Credit';
 import Employee from './Employee/Employee';
 import './Employee/Employee.css';
 import {getNoCreditEmployees} from '../reducers/employeesReducer';
@@ -13,13 +14,14 @@ class HallOfShame extends PureComponent {
                 <h1>Hall of Shame</h1>
                 <div className="Employee-List">
                     {employees.map(employee => (
-                        <Employee
-                            key={employee.name}
-                            name={employee.name}
-                            image={employee.image}
-                            title={employee.title}
-                            credit={employee.credit || 0}
-                        />
+                        <div key={employee.name}>
+                            <Employee
+                                name={employee.name}
+                                image={employee.image}
+                                title={employee.title}
+                            />
+                            <Credit credit={employee.credit}/>
+                        </div>
                     ))}
                 </div>
             </div>
