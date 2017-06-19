@@ -33,10 +33,10 @@ class App extends Component {
       <Provider store={store}>
         <ConnectedRouter history={history}>
           <div className="App">
-            <ul>
-              <li><Link to="/">Home</Link></li>
-              <li><Link to="/employees">Employees</Link></li>
-              <li><Link to="/hall-of-shame">Hall of Shame</Link></li>
+            <ul className="nav nav-tabs">
+              <li role="presentation"><Link to="/">Home</Link></li>
+              <li role="presentation"><Link to="/employees">Employees</Link></li>
+              <li role="presentation"><Link to="/hall-of-shame">Hall of Shame</Link></li>
             </ul>
             <Route path="/employees/:name" component={EmployeeDetails}/>
             <Route exact path="/employees" component={EmployeeOverview}/>
