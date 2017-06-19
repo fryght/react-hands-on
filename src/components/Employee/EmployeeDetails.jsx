@@ -9,14 +9,14 @@ class EmployeeDetails extends PureComponent {
         return (
             <div className="Employee-Details">
                 <div className="name">{name}</div>
-                <div className="image"><img src={image} alt={name}/></div>
+                <div className="image"><img src={`/${image}`} alt={name}/></div>
                 <div className="title">{title}</div>
             </div>
         );
     }
 }
 const mapStateToProps = (state, props) => {
-    const employee = filterBySlug(state.employees, props.match.params.name);
+    const employee = filterBySlug(state.employees, props.match.params.name)[0] || {};
     return {
         name: employee.name,
         image: employee.image,
