@@ -6,12 +6,12 @@ import {updateSearchFilter} from '../actions/search';
 
 class SearchBar extends Component {
     render() {
-        const {updateValue} = this.props;
+        const {updateValue, searchFilter} = this.props;
 
         return (
             <div className="SearchBar">
                 <label htmlFor="search">Search by name: </label>
-                <input name="search" type="text" onChange={updateValue}/>
+                <input name="search" type="text" value={searchFilter} onChange={updateValue}/>
             </div>
         );
     }
