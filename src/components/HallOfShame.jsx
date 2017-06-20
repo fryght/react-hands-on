@@ -4,10 +4,12 @@ import { connect } from 'react-redux'
 import Credit from './Credit';
 import Employee from './Employee/Employee';
 import './Employee/Employee.css';
-import {getNoCreditEmployees} from '../reducers/employeesReducer';
+import {getNoCreditIds} from '../reducers/creditReducer';
+import {getEmployeeById} from '../reducers/employeesReducer';
 
 class HallOfShame extends PureComponent {
     render() {
+        console.log(this.props.employees.toJS());
         const {employees} = this.props;
         return (
             <div className="HallOfShame">
@@ -22,7 +24,7 @@ class HallOfShame extends PureComponent {
                             />
                             <Credit credit={employee.credit}/>
                         </div>
-                    ))}
+                    )).toArray()}
                 </div>
             </div>
         );
@@ -32,7 +34,11 @@ class HallOfShame extends PureComponent {
 
 const mapStateToProps = (state) => {
     return {
-        employees: getNoCreditEmployees(state.employees),
+        employees: getNoCreditIds(state.credit).map(
+            (value, id) => {
+                return {...getEmployeeById(state.employees, id), credit: value};
+            }
+        )
     }
 }
 

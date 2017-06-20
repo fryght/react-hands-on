@@ -25,7 +25,7 @@ class EmployeeList extends PureComponent {
         const {employees} = this.props;
         return (
             <div className="Employee-List">
-                {employees.map(employee => this.renderEmployee(employee))}
+                {employees.map(employee => this.renderEmployee(employee)).toArray()}
             </div>
         );
     }
