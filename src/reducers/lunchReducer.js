@@ -19,3 +19,7 @@ const lunchReducer = (state = lunch, action) => {
 };
 
 export default lunchReducer;
+
+const date = new Date();
+const today = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+export const hasLunchedToday = (lunchDates, id) => lunchDates.get(parseInt(id, 10)).has(today);

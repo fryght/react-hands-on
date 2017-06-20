@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import {connect} from 'react-redux';
 
 import {filterByName} from '../../reducers/employeesReducer';
+import {hasLunchedToday} from '../../reducers/lunchReducer';
 import Employee from './Employee';
 import './Employee.css';
 import {toggleLunchDate} from '../../actions/lunch';
@@ -18,7 +19,8 @@ class EmployeeList extends PureComponent {
                     image={employee.image}
                     title={employee.title}
                 />
-                <button onClick={() => this.handleToggleLunch(id)}>Toggle Lunch for today</button>
+                <p>{employee.lunchedToday ? 'Lunched today' : 'Has not lunched today'}</p>
+                <button onClick={() => this.handleToggleLunch(id)}>Toggle lunch for today</button>
             </div>
         );
     }
@@ -35,7 +37,9 @@ class EmployeeList extends PureComponent {
 
 const mapStateToProps = (state) => {
     return {
-        employees: filterByName(state.employees, state.searchFilter),
+        employees: filterByName(state.employees, state.searchFilter).map((employee, id) => {
+            return {...employee, lunchedToday: hasLunchedToday(state.lunch, id)};
+        }),
     }
 }
 
