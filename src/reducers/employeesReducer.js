@@ -1,4 +1,4 @@
-import employees from '../data/employees';
+import employees from '../data/employeesImmutable';
 const employeesInitialState = employees;
 
 const employeesReducer = (state = employeesInitialState, action) => {
