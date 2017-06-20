@@ -5,5 +5,3 @@ const creditReducer = (state = credit, action) => {
 };
 
 export default creditReducer;
-
-export const getNoCreditIds = state => state.filter(entry => entry < 0).sort((a,b) => a - b);
