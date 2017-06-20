@@ -1,12 +1,26 @@
-import React from 'react'
+import React from 'react';
+import {connect} from 'react-redux';
 
-const Credit = ({credit}) => {
+import {addPayment} from '../actions/credit';
+
+const Credit = ({id, credit, handlePayment}) => {
     let creditClass = 'credit';
     if (credit > 0) { creditClass = 'credit positive';}
     if (credit < 0) { creditClass = 'credit negative';}
     return(
-        <div className={creditClass}>{credit} euro</div>
+        <div>
+            <div className={creditClass}>{credit} euro</div>
+            <button onClick={handlePayment}>Pay 5 euro</button>
+        </div>
     )
 }
 
-export default Credit
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        handlePayment: event => {
+            dispatch(addPayment(ownProps.id, 5))
+        }
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Credit)

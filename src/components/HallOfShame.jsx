@@ -13,14 +13,14 @@ class HallOfShame extends PureComponent {
             <div className="HallOfShame">
                 <h1>Hall of Shame</h1>
                 <div className="Employee-List">
-                    {employees.map(employee => (
+                    {employees.map((employee, id) => (
                         <div key={employee.name}>
                             <Employee
                                 name={employee.name}
                                 image={employee.image}
                                 title={employee.title}
                             />
-                            <Credit credit={employee.credit}/>
+                            <Credit credit={employee.credit} id={id}/>
                         </div>
                     )).toArray()}
                 </div>
